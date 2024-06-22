@@ -1,14 +1,34 @@
+"""
+This module provides functionalities for YouTube Playlist.
+"""
+
 import requests
 from bs4 import BeautifulSoup
 import json
 
 class Playlist:
 
+    """
+    This class provides methods to perform operatoins for given YouTube Playlist.
+    """
+
     def __init__(self, playlist_link):
         
+        """
+        Initializes the playlist with a playlist link.
+
+        Parameters:
+            playlist_link (str): Url of YouTube Playlist
+        """
+
         self.playlist_link = playlist_link
 
     def stats(self):
+
+        """
+        Returns:
+            dict: Information about given Playlist.
+        """
 
         stats = {}
 
@@ -89,6 +109,16 @@ class Playlist:
         return stats
     
     def __calculatePlaylistDuration(self, videos_data):
+        
+        """
+        Calculate total playlist duration by aggregating the duration of all videos present in playlist.
+
+        Parameters:
+            list: List of videos' data
+        
+        Returns:
+            str: Total duration of Playlist Videos in format -> HH:MM:SS
+        """
 
         total_duration = "00:00:00"
 
@@ -128,5 +158,3 @@ class Playlist:
             print("Error in __calculatePlaylistDuration():", e)
 
         return total_duration
-
-#print(Playlist(playlist_link="https://www.youtube.com/watch?v=_t2GVaQasRY&list=PLeo1K3hjS3uu_n_a__MI_KktGTLYopZ12").stats())
